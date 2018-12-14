@@ -3,6 +3,14 @@
 vec::vec(): x(0), y(0) {}
 vec::vec(float x_, float y_): x(x_), y(y_) {}
 
+vec vec::randVec(int lbound, int ubound) {
+    return vec(random::randf(lbound, ubound), random::randf(lbound, ubound));
+}
+
+vec vec::randVec(int lboundx, int lboundy, int uboundx, int uboundy) {
+    return vec(random::randf(lboundx, lboundy), random::randf(uboundx, uboundy));
+}
+
 const float vec::len() const {
     return static_cast<float>(sqrt(x*x + y*y));
 }

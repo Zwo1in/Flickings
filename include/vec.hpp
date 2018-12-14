@@ -1,10 +1,13 @@
 #include <cmath>
+#include "rand.hpp"
 
 struct vec {
     float x, y;
 
     vec();
     vec(float, float);
+    static inline vec randVec(int, int);
+    static inline vec randVec(int, int, int, int);
 
     inline const float len() const;
     inline const float arc() const;
