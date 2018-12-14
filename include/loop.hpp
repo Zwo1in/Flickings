@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "fpsClock.hpp"
 #include <vector>
+
+#include "fpsClock.hpp"
 
 struct Loop {
     using Boids = std::vector<Boid>;

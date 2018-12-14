@@ -1,0 +1,4 @@
+# Don't track those
+build
+bin
+lib

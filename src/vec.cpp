@@ -1,4 +1,4 @@
-#include "../include/vec.hpp"
+#include "vec.hpp"
 
 vec::vec(): x(0), y(0) {}
 vec::vec(float x_, float y_): x(x_), y(y_) {}
@@ -11,7 +11,7 @@ const float vec::arc() const {
     return static_cast<float>(atan(y/x));
 }
 
-const vec vec::unit() const {
+vec vec::unit() const {
     return vec(x, y)/len();
 }
 

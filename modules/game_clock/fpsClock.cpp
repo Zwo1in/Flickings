@@ -1,4 +1,4 @@
-#include "../include/fpsClock.hpp"
+#include "fpsClock.hpp"
 
 fpsClock::fpsClock( int skipTime_ ) {
     presentTime = clock.getElapsedTime();

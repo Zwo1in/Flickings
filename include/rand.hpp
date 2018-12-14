@@ -1,10 +1,19 @@
 #include <ctime>
 #include <cstdlib>
 
-srand(time(0));
+struct random {
 
-float random(int n = RAND_MAX, int m=RAND_MAX) {
-    float random = static_cast<float>(rand())/RAND_MAX;
-    if (n != m && m != RAND_MAX)
-        
-}
+    random() = delete;
+    random(random&) = delete;
+    random(random&&) = delete;
+    void operator= (random&) = delete;
+    void operator= (random&&) = delete;
+
+    static inline void init();
+    static inline float randf();
+    static inline float randf(int);
+    static inline float randf(int, int);
+    static inline int randi();
+    static inline int randi(int);
+    static inline int randi(int, int);
+};

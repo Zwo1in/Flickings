@@ -1,15 +1,15 @@
-#include "../include/loop.hpp"
+#include "loop.hpp"
 
 void Loop::display( sf::RenderWindow& win ) {
     win.clear( sf::Color(51, 51, 51) );
-    for ( auto* obj : objects )
-        obj -> draw( win );
+    // for ( auto& obj : objects )
+        // obj.draw( win );
     win.display();
 }
 
 void Loop::update() {
-    for (auto* obj : objects)
-        obj -> update();
+    // for (auto& obj : objects)
+        // obj.update();
 }
 
 bool Loop::handleEvents( sf::RenderWindow& win ) {
