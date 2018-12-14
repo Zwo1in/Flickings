@@ -26,12 +26,12 @@ bool Loop::handleEvents( sf::RenderWindow& win ) {
         }
     }
 }
-void Loop::play( sf::RenderWindow& win, fpsClock& clock ) {
-    while ( win.isOpen() ) {
-        handleEvents( win );
-        if( clock.tick() && !pause ) { 
+void Loop::play(sf::RenderWindow& win, fpsClock& clock) {
+    while (win.isOpen()) {
+        handleEvents(win);
+        if(clock.tick() && !pause) { 
             update();
-            display( win );
+            display(win);
         }
     }
 }
