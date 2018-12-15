@@ -25,8 +25,15 @@ Loop::Boids Loop::neighbours(const Boid& obj) const {
     return result;
 }
 
-vec Loop::alignment(const Boids&) {
-
+vec Loop::alignment(const Boids& neighbours) {
+    vec result;
+    for (auto& obj : neighbours) {
+        result += obj.velocity;
+    }
+    if (neighbours.size()) {
+        result /= neighbours.size();
+    }
+    return result;
 }
 
 void Loop::display(sf::RenderWindow& win) {
@@ -40,11 +47,15 @@ void Loop::display(sf::RenderWindow& win) {
 }
 
 void Loop::update() {
+    // for (auto& obj : objects) {
+    //     auto neighbourhood = neighbours(obj);
+    //     obj.acceleration += alignment(neighbourhood)-obj.velocity;
+        
+    //     // obj.acceleration += separation(neighbourhood);
+    //     // obj.acceleration += cohesion(neighbourhood);
+    // }
     for (auto& obj : objects) {
-        auto neighbourhood = neighbours(obj);
-        obj.acceleration += alignment(neighbourhood);
-        // obj.acceleration += separation(neighbourhood);
-        // obj.acceleration += cohesion(neighbourhood);
+        obj.update();
     }
 }
 
