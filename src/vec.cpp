@@ -11,12 +11,25 @@ vec vec::randVec(int lboundx, int lboundy, int uboundx, int uboundy) {
     return vec(random::randf(lboundx, lboundy), random::randf(uboundx, uboundy));
 }
 
+float vec::distance(const vec& vec1, const vec& vec2) {
+    return (vec2-vec1).len();
+}
+
 const float vec::len() const {
     return static_cast<float>(sqrt(x*x + y*y));
 }
 
 const float vec::arc() const {
-    return static_cast<float>(atan(y/x));
+    if (x > 0)
+        return static_cast<float>(atan(y/x));
+    else if (x < 0)
+        return static_cast<float>(atan(y/x))+M_PI;
+    else {
+        if (y > 0)
+            return M_PI_2;
+        else
+            return -M_PI_2;
+    }
 }
 
 vec vec::unit() const {
@@ -45,6 +58,10 @@ void vec::rotate(const float& arc_) {
 void vec::limit(const float& len_) {
     if (len() > len_)
         setLen(len_);
+}
+
+void vec::unset() {
+    x = y = 0.;
 }
 
 vec operator+  (const vec& lhs, const vec& rhs) {

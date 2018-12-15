@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.0.2)
 set(SOURCES
     vec.cpp
     rand.cpp
+    boid.cpp
     loop.cpp
 )
 

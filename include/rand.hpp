@@ -1,3 +1,5 @@
+#pragma once
+
 #include <ctime>
 #include <cstdlib>
 
@@ -9,11 +11,11 @@ struct random {
     void operator= (random&) = delete;
     void operator= (random&&) = delete;
 
-    static inline void init();
-    static inline float randf();
-    static inline float randf(int);
-    static inline float randf(int, int);
-    static inline int randi();
-    static inline int randi(int);
-    static inline int randi(int, int);
+    static void init();
+    static float randf();
+    static float randf(int);
+    static float randf(int, int);
+    static int randi();
+    static int randi(int);
+    static int randi(int, int);
 };

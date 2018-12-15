@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cmath>
 #include "rand.hpp"
 
@@ -6,27 +8,29 @@ struct vec {
 
     vec();
     vec(float, float);
-    static inline vec randVec(int, int);
-    static inline vec randVec(int, int, int, int);
+    static vec randVec(int, int);
+    static vec randVec(int, int, int, int);
+    static float distance(const vec&, const vec&);
 
-    inline const float len() const;
-    inline const float arc() const;
-    inline vec   unit() const;
-    inline void  setLen(const float&);
-    inline void  setArc(const float&);
-    inline void  rotate(const float&);
-    inline void  limit(const float&);
+    const float len() const;
+    const float arc() const;
+    vec  unit() const;
+    void setLen(const float&);
+    void setArc(const float&);
+    void rotate(const float&);
+    void limit(const float&);
+    void unset();
 
     friend vec  operator+  (const vec&, const vec&);
     friend vec  operator-  (const vec&, const vec&);
-    inline vec& operator+= (const vec&);
-    inline vec& operator-= (const vec&);
+    vec& operator+= (const vec&);
+    vec& operator-= (const vec&);
     friend vec operator*  (const vec&, const float&);
     friend vec operator/  (const vec&, const float&);
     friend vec operator*  (const float&, const vec&);
     friend vec operator/  (const float&, const vec&);
-    inline vec& operator*= (const float&);
-    inline vec& operator/= (const float&);
+    vec& operator*= (const float&);
+    vec& operator/= (const float&);
     friend bool operator== (const vec&, const vec&);
     friend bool operator!= (const vec&, const vec&);
 };
