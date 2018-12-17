@@ -3,9 +3,9 @@
 #include "vec.hpp"
 
 struct Boid {
-    vec acceleration;
-    vec velocity;
-    vec position;
+    vec acc;
+    vec vel;
+    vec pos;
 
     Boid();
     void update();

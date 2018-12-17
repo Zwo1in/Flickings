@@ -18,7 +18,7 @@ struct Loop {
     Loop(Loop&) = delete;
     void operator=(Loop&) = delete;
 
-    vec alignment(const Boids&);
+    vec alignment(const Boid&, const Boids&);
 
     Boids neighbours(const Boid&) const;
     void display(sf::RenderWindow&);
