@@ -3,12 +3,12 @@
 vec::vec(): x(0), y(0) {}
 vec::vec(float x_, float y_): x(x_), y(y_) {}
 
-vec vec::randVec(int lbound, int ubound) {
-    return vec(random::randf(lbound, ubound), random::randf(lbound, ubound));
+vec vec::randVec(int lb, int ub) {
+    return vec(random::randf(lb, ub), random::randf(lb, ub));
 }
 
-vec vec::randVec(int lboundx, int lboundy, int uboundx, int uboundy) {
-    return vec(random::randf(lboundx, lboundy), random::randf(uboundx, uboundy));
+vec vec::randVec(int lbx, int lby, int ubx, int uby) {
+    return vec(random::randf(lbx, lby), random::randf(ubx, uby));
 }
 
 float vec::distance(const vec& vec1, const vec& vec2) {
@@ -21,47 +21,59 @@ const float vec::len() const {
 
 const float vec::arc() const {
     if (x > 0)
-        return static_cast<float>(atan(y/x));
+        if (y >= 0)
+            return static_cast<float>(atan(y/x));
+        else
+            return 2*M_PI + static_cast<float>(atan(y/x));
     else if (x < 0)
         return static_cast<float>(atan(y/x))+M_PI;
     else {
         if (y > 0)
             return M_PI_2;
         else
-            return -M_PI_2;
+            return 1.5*M_PI;
     }
 }
 
-vec vec::unit() const {
-    return vec(x, y)/len();
+vec& vec::unit() {
+    if (len() == 0)
+        return *this;
+    x /= len();
+    y /= len();
+    return *this;
 }
 
-void vec::setLen(const float& len) {
+vec& vec::setLen(const float& len) {
     auto thisUnit = unit();
     x = thisUnit.x * len;
-    y = thisUnit.y * len;        
+    y = thisUnit.y * len;     
+    return *this;
 }
 
-void vec::setArc(const float& arc) {
+vec& vec::setArc(const float& arc) {
     float length = len();
     x = length * cos(arc);
     y = length * sin(arc);
+    return *this;
 }
 
-void vec::rotate(const float& arc_) {
+vec& vec::rotate(const float& arc_) {
     float length = len();
     float rotation = arc();
     x = length * cos(rotation + arc_);
     y = length * sin(rotation + arc_);
+    return *this;
 }
 
-void vec::limit(const float& len_) {
+vec& vec::limit(const float& len_) {
     if (len() > len_)
         setLen(len_);
+    return *this;
 }
 
-void vec::unset() {
-    x = y = 0.;
+vec& vec::unset() {
+    x = y = 0;
+    return *this;
 }
 
 vec operator+  (const vec& lhs, const vec& rhs) {
@@ -75,11 +87,13 @@ vec operator-  (const vec& lhs, const vec& rhs) {
 vec& vec::operator+= (const vec& rhs) {
     x += rhs.x;
     y += rhs.y;
+    return *this;
 }
 
 vec& vec::operator-= (const vec& rhs) {
     x -= rhs.x;
     y -= rhs.y;
+    return *this;
 }
 
 vec operator*  (const vec& lhs, const float& val) {
@@ -101,11 +115,13 @@ vec operator/  (const float& val, const vec& rhs) {
 vec& vec::operator*= (const float& val) {
     x *= val;
     y *= val;
+    return *this;
 }
 
 vec& vec::operator/= (const float& val) {
     x /= val;
     y /= val;
+    return *this;
 }
 
 bool operator== (const vec& lhs, const vec& rhs) {

@@ -14,12 +14,12 @@ struct vec {
 
     const float len() const;
     const float arc() const;
-    vec  unit() const;
-    void setLen(const float&);
-    void setArc(const float&);
-    void rotate(const float&);
-    void limit(const float&);
-    void unset();
+    vec& unit();
+    vec& setLen(const float&);
+    vec& setArc(const float&);
+    vec& rotate(const float&);
+    vec& limit(const float&);
+    vec& unset();
 
     friend vec  operator+  (const vec&, const vec&);
     friend vec  operator-  (const vec&, const vec&);

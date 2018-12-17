@@ -8,19 +8,21 @@
 
 struct Loop {
     using Boids = std::vector<Boid>;
-    
+
+    const int width, height;    
     sf::ConvexShape body;
     Boids objects;
     bool pause;
     
-    explicit Loop(Boids);
+    Loop(Boids, int, int);
     Loop() = delete;
     Loop(Loop&) = delete;
-    void operator=(Loop&) = delete;
+    void operator= (Loop&) = delete;
 
-    vec alignment(const Boid&, const Boids&);
+    void align(Boid&, const Boids&);
 
     Boids neighbours(const Boid&) const;
+    void edges();
     void display(sf::RenderWindow&);
     void update();
     bool handleEvents(sf::RenderWindow&);
